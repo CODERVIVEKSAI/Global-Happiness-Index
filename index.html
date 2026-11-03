@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eruliaf - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { margin: 0; padding: 20px; font-family: sans-serif; }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; }
+        .hero { 
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 10px; 
+            margin-bottom: 30px; 
+            max-width: 1100px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; max-width: 1100px; margin: 0 auto; }
+        .card { width: 220px; padding: 15px; border-radius: 10px; text-align: center; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        
+        .card-img { 
+            height: 130px; 
+            border-radius: 8px; 
+            margin-bottom: 12px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            background-color: #f8f9fa; 
+        }
+        
+        .star-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+        .star-toggle svg { stroke: #666; fill: none; transition: all 0.2s ease; }
+        .star-toggle.starred svg { stroke: #f59e0b; fill: #f59e0b; }
+
+        .panel { display: none; position: fixed; right: 0; top: 0; width: 240px; height: 100%; padding: 25px; box-shadow: -4px 0 15px rgba(0,0,0,0.15); z-index: 100; background: white; }
+        .panel.show { display: block; }
+        
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px; 
+            padding: 12px 24px; 
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #e9ecef;
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px; 
+            transition: all 0.2s ease;
+        }
+
+        .nav-link.active {
+            background-color: #4a4a4a;
+            color: #ffffff;
+            border-color: #4a4a4a;
+        }
+
+        .nav-link:hover:not(.active) {
+            background-color: #dee2e6;
+        }
+    </style>
+</head>
+
+<body>
+   <div class="nav form-container">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="Eruliaf logo.png" alt="Eruliaf Logo" style="height: 55px; width: auto; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));">
+        <a href="dashboard.html" class="nav-link" id="nav-home">Home</a>
+        <a href="browse.html" class="nav-link" id="nav-browse">Browse</a>
+        <a href="starred.html" class="nav-link" id="nav-starred">
+            Starred 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+        </a>
+    </div>
+    
+    <div style="display:flex; gap: 10px; align-items:center;">
+        <input type="text" id="search-input" class="input-field" onkeyup="filterAchievers()" placeholder="Search..." style="padding: 8px 12px; width: 150px;">
+        <button class="form-btn" onclick="toggleSettings()" style="padding: 8px 12px; cursor:pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+    </div>
+   </div>
+
+   <div class="hero form-container">
+    <h1>Learn the secrets of great achievers</h1>
+    <p style="color: #666;">Discover insights from top performers around the world.</p>
+   </div>
+
+   <h3 style="text-align: center; margin-bottom: 20px;">Featured Achievers & Scholars</h3>
+   
+   <div class="grid" id="achiever-grid"></div>
+
+    <div id="settings" class="panel form-container">
+    <h3 style="margin-top:0;">Settings</h3>
+    <hr style="margin-bottom: 20px; opacity: 0.3;">
+    <label style="display:block; margin-bottom: 15px; cursor: pointer;">
+        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode(this.checked)"> Dark Mode
+    </label>
+    
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 30px;">
+        <button class="form-btn form-btn--submit" onclick="toggleSettings()" style="width:100%; padding:8px; border-radius:5px; cursor:pointer;">Close</button>
+        <a href="index.html" style="text-decoration: none;"><button class="form-btn" style="width:100%; background-color: #dc3545; color: white; padding: 8px; border:none; border-radius:5px; cursor:pointer; font-weight:600;">Logout</button></a>
+    </div>
+</div>
+
+    <script>
+        const achieversData = [
+    // Athletes
+    { id: "lionel-messi", name: "Lionel Messi", meta: "Football", gender: "male", role: "athlete", img: "messi2.jpeg", page: "Messi.html" },
+    { id: "cristiano-ronaldo", name: "Cristiano Ronaldo", meta: "Football", gender: "male", role: "athlete", img: "ronaldo1.jpeg", page: "Ronaldo.html" },
+    { id: "neymar", name: "Neymar Jr", meta: "Football", gender: "male", role: "athlete", img: "neymar1.jpeg", page: "neymar.html" },
+    { id: "neeraj-chopra", name: "Neeraj Chopra", meta: "Javelin Throw", gender: "male", role: "athlete", img: "neeraj1.jpeg", page: "neerav chopra.html" },
+    { id: "michael-jordan", name: "Michael Jordan", meta: "Basketball", gender: "male", role: "athlete", img: "jordan3.jpeg", page: "michaeljordan.html" },
+    { id: "novak-djokovic", name: "Novak Djokovic", meta: "Tennis", gender: "male", role: "athlete", img: "novak2.jpeg", page: "novak-djokovic.html" },
+    { id: "muhammad-ali", name: "Muhammad Ali", meta: "Boxing", gender: "male", role: "athlete", img: "ali3.jpeg", page: "Ali.html" },
+    { id: "serena-williams", name: "Serena Williams", meta: "Tennis", gender: "female", role: "athlete", img: "serena1.jpeg", page: "Serenawilliams.html" },
+    { id: "nadia-comaneci", name: "Nadia Comăneci", meta: "Gymnastics", gender: "female", role: "athlete", img: "nadia2.jpeg", page: "Nadia.html" },
+    { id: "fanny-blankers-koen", name: "Fanny Blankers-Koen", meta: "Track & Field", gender: "female", role: "athlete", img: "fanny1.jpeg", page: "Koen.html" },
+    { id: "mary-kom", name: "MC Mary Kom", meta: "Boxing", gender: "female", role: "athlete", img: "marykom2.jpeg", page: "Marykom.html" },
+    { id: "karnam-malleswari", name: "Karnam Malleswari", meta: "Weightlifting", gender: "female", role: "athlete", img: "karnam1.jpeg", page: "malleshwari.html" },
+    { id: "virat-kohli", name: "Virat Kohli", meta: "Cricket", gender: "male", role: "athlete", img: "virat1.jpeg", page: "Viratkohli.html" },
+    { id: "rohit-sharma", name: "Rohit Sharma", meta: "Cricket", gender: "male", role: "athlete", img: "rohit3.jpeg", page: "rohitsharma.html" },
+    { id: "sachin-tendulkar", name: "Sachin Tendulkar", meta: "Cricket", gender: "male", role: "athlete", img: "sachin1.jpeg", page: "Sachintendulkar.html" },
+    { id: "pele", name: "Pelé", meta: "Football", gender: "male", role: "athlete", img: "pele3.jpeg", page: "Pele.html" },
+    { id: "diego-maradona", name: "Diego Maradona", meta: "Football", gender: "male", role: "athlete", img: "maradona4.jpeg", page: "Maradona.html" },
+    { id: "lebron-james", name: "LeBron James", meta: "Basketball", gender: "male", role: "athlete", img: "lebron2.jpeg", page: "lebron.html" },
+    { id: "marta", name: "Marta", meta: "Football", gender: "female", role: "athlete", img: "marta.jpeg", page: "marta.html" },
+    { id: "ronda-rousey", name: "Ronda Rousey", meta: "Mixed Martial Arts & Judo", gender: "female", role: "athlete", img: "rousey1.jpeg", page: "RondaRousey.html" },
+    { id: "yusra-mardini", name: "Yusra Mardini", meta: "Swimming", gender: "female", role: "athlete", img: "mardini1.jpeg", page: "YusraMardini.html" },
+    { id: "katie-ledecky", name: "Katie Ledecky", meta: "Swimming", gender: "female", role: "athlete", img: "ledecky2.jpeg", page: "KatieLedecky.html" },
+    { id: "kathrine-switzer", name: "Kathrine Switzer", meta: "Marathon Running", gender: "female", role: "athlete", img: "switzer1.jpeg", page: "KathrineSwitzer.html" },
+    { id: "wilma-rudolph", name: "Wilma Rudolph", meta: "Track & Field", gender: "female", role: "athlete", img: "rudolph2.jpeg", page: "WilmaRudolph.html" },
+    { id: "bethany-hamilton", name: "Bethany Hamilton", meta: "Surfing", gender: "female", role: "athlete", img: "hamilton1.jpeg", page: "BethanyHamilton.html" },
+    { id: "michael-phelps", name: "Michael Phelps", meta: "Competitive Swimming", gender: "male", role: "athlete", img: "michael phelps.jpeg", page: "Phelps.html" },
+    { id: "usain-bolt", name: "Usain Bolt", meta: "Track & Field", gender: "male", role: "athlete", img: "UsainBolt.jpeg", page: "Usainbolt.html" },
+    { id: "pv-sindhu", name: "P.V. Sindhu", meta: "Badminton", gender: "female", role: "athlete", img: "PVSindhuMedal.jpeg", page: "PVSindhu.html" },
+
+    // Scholars & Innovators
+        { id: "marie-curie", name: "Marie Curie", meta: "Physics & Chemistry", gender: "female", role: "scholar", img: "marie2.jpeg", page: "mariecurie.html" },
+    { id: "albert-einstein", name: "Albert Einstein", meta: "Theoretical Physics", gender: "male", role: "scholar", img: "einstein1.jpeg", page: "albert-einstein.html" },
+    { id: "thomas-aquinas", name: "Thomas Aquinas", meta: "Philosophy & Theology", gender: "male", role: "scholar", img: "aquinas2.jpeg", page: "thomas-aquinas.html" },
+    { id: "galileo-galilei", name: "Galileo Galilei", meta: "Astronomy & Physics", gender: "male", role: "scholar", img: "galileo1.jpeg", page: "galileo-galilei.html" },
+    { id: "benjamin-franklin", name: "Benjamin Franklin", meta: "Physics & Invention", gender: "male", role: "scholar", img: "benjamin2.jpeg", page: "benjamin-franklin.html" },
+    { id: "charles-darwin", name: "Charles Darwin", meta: "Evolutionary Biology", gender: "male", role: "scholar", img: "charles1.jpeg", page: "charles-darwin.html" },
+    { id: "thomas-edison", name: "Thomas Edison", meta: "Invention & Engineering", gender: "male", role: "scholar", img: "thomas2.jpeg", page: "thomas-edison.html" },
+    { id: "tim-berners-lee", name: "Tim Berners-Lee", meta: "Computer Science & Web Architecture", gender: "male", role: "scholar", img: "tim1.jpeg", page: "tim-berners-lee.html" },
+    { id: "karl-benz", name: "Karl Benz", meta: "Automotive Engineering", gender: "male", role: "scholar", img: "benz2.jpeg", page: "karl-benz.html" },
+    { id: "ferdinand-porsche", name: "Ferdinand Porsche", meta: "Automotive Design", gender: "male", role: "scholar", img: "porsche1.jpeg", page: "ferdinand-porsche.html" },
+    { id: "rudolf-diesel", name: "Rudolf Diesel", meta: "Mechanical Engineering", gender: "male", role: "scholar", img: "diesel1.jpeg", page: "rudolf-diesel.html" },
+    { id: "stephanie-kwolek", name: "Stephanie Kwolek", meta: "Polymer Chemistry", gender: "female", role: "scholar", img: "kwolek2.jpeg", page: "kwolek.html" },
+    { id: "hedy-lamarr", name: "Hedy Lamarr", meta: "Applied Physics & Invention", gender: "female", role: "scholar", img: "lamarr.jpeg", page: "lamarr.html" },
+    { id: "narinder-singh-kapany", name: "Dr. Narinder Singh Kapany", meta: "Fiber Optics & Physics", gender: "male", role: "scholar", img: "kapany1.jpeg", page: "kapany.html" },
+    { id: "jagadish-chandra-bose", name: "Sir Jagadish Chandra Bose", meta: "Biophysics & Botany", gender: "male", role: "scholar", img: "bose2.jpeg", page: "bose.html" },
+    { id: "apj-abdul-kalam", name: "Dr. A.P.J. Abdul Kalam", meta: "Aerospace Engineering", gender: "male", role: "scholar", img: "kalam1.jpeg", page: "kalam.html" },
+    { id: "nelson-mandela", name: "Nelson Mandela", meta: "Leadership & Peace", gender: "male", role: "scholar", img: "mandela2.jpeg", page: "mandela.html" },
+    { id: "jennifer-doudna", name: "Jennifer Doudna", meta: "Biochemistry & Molecular Biology", gender: "female", role: "scholar", img: "doudna1.jpeg", page: "doudna.html" },
+    { id: "maryam-mirzakhani", name: "Maryam Mirzakhani", meta: "Theoretical Mathematics & Geometry", gender: "female", role: "scholar", img: "mirzakhani2.jpeg", page: "mirzakhani.html" },
+    { id: "katalin-kariko", name: "Katalin Karikó", meta: "Biochemistry & mRNA Biotechnology", gender: "female", role: "scholar", img: "kariko1.jpeg", page: "kariko.html" },
+    { id: "sara-seager", name: "Sara Seager", meta: "Astrophysics & Planetary Science", gender: "female", role: "scholar", img: "seager2.jpeg", page: "seager.html" },
+    { id: "donna-strickland", name: "Donna Strickland", meta: "Optical Physics & Laser Technology", gender: "female", role: "scholar", img: "strickland1.jpeg", page: "strickland.html" },
+    { id: "esther-duflo", name: "Esther Duflo", meta: "Development Economics & Social Policy", gender: "female", role: "scholar", img: "duflo2.jpeg", page: "duflo.html" },
+    { id: "mae-jemison", name: "Mae Jemison", meta: "Space Exploration & Medicine", gender: "female", role: "scholar", img: "jemison1.jpeg", page: "jemison.html" },
+    { id: "soumya-swaminathan", name: "Dr. Soumya Swaminathan", meta: "Paediatrics & Global Public Health", gender: "female", role: "scholar", img: "swaminathan2.jpeg", page: "swaminathan.html" },
+    { id: "tessy-thomas", name: "Dr. Tessy Thomas", meta: "Aerospace Engineering & Defense Technology", gender: "female", role: "scholar", img: "tessy1.jpeg", page: "thomas.html" }
+];
+
+
+        let starredIds = JSON.parse(localStorage.getItem("starredAchievers")) || [];
+
+        function shuffleArray(arr) {
+            return arr.sort(() => Math.random() - 0.5);
+        }
+
+        function renderCards(data) {
+            const grid = document.getElementById("achiever-grid");
+            grid.innerHTML = "";
+
+            data.forEach(item => {
+                const isStarred = starredIds.includes(item.id);
+                const card = document.createElement("div");
+                card.className = "card form-container";
+                card.innerHTML = `
+                    <button class="star-toggle ${isStarred ? 'starred' : ''}" onclick="toggleStar('${item.id}')" title="Star Achiever">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                    </button>
+                    <div class="card-img form-blob">
+                        <img src="${item.img}" alt="${item.name}" style="max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 8px; display: block;">
+                    </div>
+                    <h4>${item.name}</h4>
+                    <p style="color:#666; font-size:14px;">${item.meta}</p>
+                    <a href="${item.page}" style="text-decoration: none; width: 100%; margin-top: 10px;">
+                        <button class="form-btn form-btn--submit" style="width:100%; padding:8px; border-radius:5px; cursor:pointer;">View Profile</button>
+                    </a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleStar(id) {
+            if (starredIds.includes(id)) {
+                starredIds = starredIds.filter(item => item !== id);
+            } else {
+                starredIds.push(id);
+            }
+            localStorage.setItem("starredAchievers", JSON.stringify(starredIds));
+            renderCards(currentData);
+        }
+
+        function filterAchievers() {
+            const query = document.getElementById("search-input").value.toLowerCase();
+            const filtered = currentData.filter(item => 
+                item.name.toLowerCase().includes(query) || 
+                item.meta.toLowerCase().includes(query)
+            );
+            renderCards(filtered);
+        }
+
+        function toggleSettings() {
+            document.getElementById('settings').classList.toggle('show');
+        }
+
+        function handleLogout() {
+            window.location.href = "index.html";
+        }
+
+        const currentPage = window.location.pathname.split("/").pop();
+        if (currentPage === "browse.html") {
+            document.getElementById("nav-browse").classList.add("active");
+        } else if (currentPage === "starred.html") {
+            document.getElementById("nav-starred").classList.add("active");
+        } else {
+            document.getElementById("nav-home").classList.add("active");
+        }
+
+        const currentData = shuffleArray([...achieversData]).slice(0, 4);
+        renderCards(currentData);
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
