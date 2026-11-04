@@ -1,29 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-:root {
-    --bg-color: #f8fafc;
-    --text-color: #0f172a;
-    --card-bg: #ffffff;
-    --border-color: #e2e8f0;
-    --placeholder: #94a3b8;
-    --primary: #10b981;
-    --primary-hover: #059669;
-    --accent-yellow: #f59e0b;
-    --accent-blue: #3b82f6;
-}
-
-body.dark-mode {
-    --bg-color: #090d16;
-    --text-color: #f8fafc;
-    --card-bg: #111827;
-    --border-color: #1f2937;
-    --placeholder: #64748b;
-    --primary: #34d399;
-    --primary-hover: #10b981;
-    --accent-yellow: #fbbf24;
-    --accent-blue: #60a5fa;
-}
-
+/* --- 1. Base Setup --- */
 * {
     margin: 0;
     padding: 0;
@@ -32,165 +9,134 @@ body.dark-mode {
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: #f8fafc;
+    color: #0f172a;
     min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 30px 20px;
 }
 
 .container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    max-width: 1200px;
-    padding: 18px 30px;
-    margin: 0 auto 20px;
-}
-
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     gap: 20px;
-    max-width: 1000px;
+}
+
+/* --- 2. Top Tab Navigation Bar --- */
+.tab-menu {
+    display: flex;
+    gap: 8px;
+    background-color: #e2e8f0;
+    padding: 6px;
+    border-radius: 10px;
+    width: fit-content;
     margin: 0 auto;
 }
 
-.card, .form-container {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 30px;
-    width: 100%;
-    max-width: 450px;
-}
-
-.card {
-    width: 250px;
-    text-align: center;
-}
-
-.card-img {
-    height: 150px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color);
-    overflow: hidden;
-}
-
-.input-group {
-    position: relative;
-    display: flex;
-    margin-bottom: 15px;
-}
-
-.input-field {
-    width: 100%;
-    height: 48px;
-    padding-inline: 14px;
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    outline: none;
-}
-
-.floating-label {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-    color: var(--placeholder);
-    background-color: var(--card-bg);
-    padding-inline: 4px;
-    transition: all 0.2s ease;
-    pointer-events: none;
-}
-
-.input-field:focus ~ .floating-label,
-.input-field:not(:placeholder-shown) ~ .floating-label {
-    top: 0;
-    font-size: 12px;
-    color: var(--primary);
-}
-
-.input-field:focus {
-    border-color: var(--primary);
-}
-
-.form-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    height: 48px;
-    background-color: var(--primary);
-    color: #ffffff;
+.tab-btn {
+    background: transparent;
     border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
     border-radius: 6px;
     cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-.form-btn:hover {
-    background-color: var(--primary-hover);
+.tab-btn:hover {
+    color: #0f172a;
 }
 
-.form-socials {
+.tab-btn.active {
+    background-color: #ffffff;
+    color: #10b981;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* --- 3. Cards & Structure --- */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+}
+
+.title-card {
+    text-align: center;
+    width: 100%;
+}
+
+.title-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* --- 4. Main Grid Layout --- */
+.main-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 15px;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    width: 100%;
 }
 
-.form-btn--social {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    height: 40px;
+.content-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.btn-icon {
-    width: 20px;
-    height: 20px;
+.info-group h3 {
+    font-size: 18px;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    color: #0f172a;
 }
 
-.tab-content {
-    display: none;
-    padding: 20px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+.info-group p {
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #10b981;
+    background-color: #ecfdf5;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* --- 5. Right Sidebar (About Me) --- */
+.about-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: fit-content;
+}
+
+.avatar-box {
+    width: 100%;
+    height: 140px;
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
     border-radius: 8px;
-}
-
-.panel {
-    display: none;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 260px;
-    height: 100%;
-    padding: 25px;
-    background-color: var(--card-bg);
-    border-left: 1px solid var(--border-color);
-    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-}
-
-.panel.show {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 14px;
 }
