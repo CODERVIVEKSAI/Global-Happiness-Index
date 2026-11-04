@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Happiness Index</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
-        
+
         <!-- Top Interactive Tab Menu -->
         <div class="tab-menu">
             <button class="tab-btn active" onclick="switchTab(event, 'tab-home')">Home</button>
@@ -26,52 +28,65 @@
         <!-- Tab 1: Home Content -->
         <div id="tab-home" class="tab-content" style="display: block;">
             <div class="main-grid">
-                
+
                 <!-- Left Section: IB Parameters -->
                 <section class="card content-card">
                     <div class="info-group">
                         <span class="badge">Statement of Inquiry</span>
                         <h3>SOI</h3>
-                        <p>The measurement of human well-being reveals how social, economic and cultural factors influence the development of societies and the quality of life of individuals.</p>
+                        <p>The measurement of human well-being reveals how social, economic and cultural factors
+                            influence the development of societies and the quality of life of individuals.</p>
                     </div>
 
-                    
+
 
                     <div class="info-group">
                         <span class="badge">Approaches to Learning</span>
                         <h3>ATL</h3>
-                        <p>I chose the ATL skill Critical Thinking because researching the World Happiness Index requires me to analyse and compare happiness levels between different communities. Critical Thinking will help me understand why some countries rank higher than others and evaluate how different factors influence the happiness levels of people. </p>
+                        <p>I chose the ATL skill Critical Thinking because researching the World Happiness Index
+                            requires me to analyse and compare happiness levels between different communities. Critical
+                            Thinking will help me understand why some countries rank higher than others and evaluate how
+                            different factors influence the happiness levels of people. </p>
                     </div>
-                    
 
-                    
+
+
 
                     <div class="info-group">
                         <span class="badge">Key Concept</span>
                         <h3>KC </h3>
-                        <p>I chose the Key Concept Connection because happiness is connected to a lot of factors such as economic stability, social support, freedom, and health. The World Happiness Index allows me to explore how these factors are connected and how they influence people's happiness.</p>
+                        <p>I chose the Key Concept Connection because happiness is connected to a lot of factors such as
+                            economic stability, social support, freedom, and health. The World Happiness Index allows me
+                            to explore how these factors are connected and how they influence people's happiness.</p>
                     </div>
 
                     <div class="info-group">
                         <span class="badge">Aga Khan Strand</span>
                         <h3>AKS </h3>
-                        <p>I chose the AK strand Economics for Development because a country's economic condition can have a great impact on people's quality of life and well-being. Through the World Happiness Index, I can investigate how factors such as income, employment, and economic stability affect happiness and compare the development of different countries.</p>
+                        <p>I chose the AK strand Economics for Development because a country's economic condition can
+                            have a great impact on people's quality of life and well-being. Through the World Happiness
+                            Index, I can investigate how factors such as income, employment, and economic stability
+                            affect happiness and compare the development of different countries.</p>
                     </div>
 
                     <div class="info-group">
                         <span class="badge">Global Context</span>
                         <h3>GC </h3>
-                        <p>Fairness & development</p>
+                        <p>I chose the Global Context Fairness and Development because people all over the world live in
+                            different conditions. The World Happiness Index will help me understand the inequalities
+                            between countries and how differences in access to resources, healthcare, social support,
+                            and freedom influence people’s happiness and quality of life.</p>
                     </div>
                 </section>
+
 
                 <!-- Right Section: About Me -->
                 <aside class="card about-card">
                     <h3>About Me</h3>
                     <div class="avatar-box">
-                        <span>Profile Picture</span>
+                        <img id="random-avatar" src="" alt="Profile Picture">
                     </div>
-                    <p>Hi, I'm Vivek. This web platform explores global happiness metrics, evaluating country rankings and sustainable development indicators.</p>
+                    <p>Hi, I am Vivek. I am currently in Grade 8 at the Aga Khan Academy Hyderabad. Apart from studying, I am a swimmer and footballer, and I enjoy drawing in my free time. I like exploring new topics and learning about the world around me. I chose to research the World Happiness Index because I wondered what makes people happy and why happiness levels are different between countries. Through this website, I aim to explore the factors that influence people's happiness, compare countries, and understand how communities can improve the quality of life for people all over the world.</p>
                 </aside>
 
             </div>
@@ -103,19 +118,35 @@
 
     </div>
 
-    <!-- JavaScript for Tab Switching -->
-    <script>
-        function switchTab(evt, tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.style.display = 'none');
+    
+<script>
+    function switchTab(evt, tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.style.display = 'none');
 
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(tabId).style.display = 'block';
-            evt.currentTarget.classList.add('active');
+        document.getElementById(tabId).style.display = 'block';
+        evt.currentTarget.classList.add('active');
+    }
+
+    
+    window.addEventListener('DOMContentLoaded', () => {
+        const avatarImages = [
+            'Img1.jpeg',
+            'Img2.jpeg',
+            'Img3.jpeg'
+        ];
+
+        const avatarImg = document.getElementById('random-avatar');
+
+        if (avatarImg && avatarImages.length > 0) {
+            const randomIndex = Math.floor(Math.random() * avatarImages.length);
+            avatarImg.src = avatarImages[randomIndex];
         }
-    </script>
-
+    });
+</script>
 </body>
+
 </html>
