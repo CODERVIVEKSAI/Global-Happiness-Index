@@ -1,15 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+
 
 /* --- 1. Base Setup --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Luxurious Roman', sans-serif;
 }
 
 body {
-    background-color: #f8fafc;
+    background-color: #a4eaf9;
     color: #0f172a;
     min-height: 100vh;
     padding: 30px 20px;
@@ -28,7 +30,7 @@ body {
 .tab-menu {
     display: flex;
     gap: 8px;
-    background-color: #e2e8f0;
+    background-color: #bef2fe;
     padding: 6px;
     border-radius: 10px;
     width: fit-content;
@@ -37,7 +39,7 @@ body {
 
 .tab-btn {
     background: transparent;
-    border: none;
+    border:#87b2bc ;
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 600;
@@ -53,7 +55,7 @@ body {
 
 .tab-btn.active {
     background-color: #ffffff;
-    color: #10b981;
+    color: #1056b9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -72,7 +74,7 @@ body {
 }
 
 .title-card h1 {
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
@@ -109,8 +111,8 @@ body {
     display: inline-block;
     font-size: 12px;
     font-weight: 600;
-    color: #10b981;
-    background-color: #ecfdf5;
+    color: #ffffff;
+    background-color: #2e73d3;
     padding: 4px 10px;
     border-radius: 20px;
 }
