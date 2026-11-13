@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
 
 
@@ -39,7 +38,7 @@ body {
 
 .tab-btn {
     background: transparent;
-    border:#87b2bc ;
+    border: #87b2bc;
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 600;
@@ -165,7 +164,8 @@ body {
     flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Creates spacing between each box */
+    gap: 15px;
+    /* Creates spacing between each box */
 }
 
 /* Right column for About Me */
@@ -195,8 +195,8 @@ body {
 /* Category badge inside boxes */
 .badge {
     display: inline-block;
-    background-color: #eef2ff;
-    color: #3b82f6;
+    background-color: #3967ff;
+    color: #ffffff;
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 12px;

@@ -82,7 +82,19 @@
                     <div class="avatar-box">
                         <img id="random-avatar" src="" alt="Profile Picture">
                     </div>
-                    <p>Hi, I am Vivek Sai Chanda. I am currently in Grade 8 at the Aga Khan Academy Hyderabad. Apart from studying, I am a swimmer and footballer, and I enjoy drawing in my free time. I like exploring new topics and learning about the world around me. I chose to research on the World Happiness Index because I wondered what makes people happy and why happiness levels are different between countries. Through this website, I aim to explore the factors that influence people's happiness, compare countries, and understand how communities can improve the quality of life for people all over the world.</p>
+                    <p style="margin-bottom: 10px;">Hi, I am Vivek Sai Chanda. I am currently in Grade 8 at the Aga Khan
+                        Academy Hyderabad. Apart
+                        from studying, I am a swimmer and footballer, and I enjoy drawing in my free time. I like
+                        exploring new topics and learning about the world around me. I chose to research on the World
+                        Happiness Index because I wondered what makes people happy and why happiness levels are
+                        different between countries. Through this website, I aim to explore the factors that influence
+                        people's happiness, compare countries, and understand how communities can improve the quality of
+                        life for people all over the world.</p>
+
+
+
+                    <h3 style="margin-bottom: 3px;">Contact Information:</h3>
+                    <p>Email: viveksaichanda@gmail.com</p>
                 </aside>
 
             </div>
@@ -105,69 +117,84 @@
         </div>
 
         <!-- Tab 4: About Content (Hidden by default) -->
-       <div id="tab-about" class="tab-content" style="display: none;">
-    <div class="left-column">
-        
-        <div class="card info-card">
-            <h3>Research Question:</h3>
-            <p>To what extent did economic aid improve the global World Happiness Index compared to social support initiatives such as paid parental leave and childcare subsidies between 2020 and 2025?</p>
+        <div id="tab-about" class="tab-content" style="display: none;">
+            <div class="left-column">
+
+                <div class="card info-card">
+                    <h3>Research Question:</h3>
+                    <p>To what extent did economic aid improve the global World Happiness Index compared to social
+                        support initiatives such as paid parental leave and childcare subsidies between 2020 and 2025?
+                    </p>
+                </div>
+
+                <div class="card info-card">
+                    <h3>Justification Of Research Question:</h3>
+                    <p>Overview of the research parameters and project criteria.</p>
+                </div>
+
+                <div class="card info-card">
+                    <h3>Primary Data That Will Be Used To Answer The Research Question</h3>
+                    <p>Overview of the research parameters and project criteria.</p>
+                </div>
+
+                <div class="card info-card">
+                    <h3>Secondary Data That Will Be Used To Answer The Research Question</h3>
+                    <p>Overview of the research parameters and project criteria.</p>
+                </div>
+
+                <div class="card info-card">
+                    <h3>Action Plan</h3>
+                    <p>Overview of the research parameters and project criteria.</p>
+                </div>
+
+                <div class="card info-card">
+                    <h3>Bibliography</h3>
+                    <p>Overview of the research parameters and project criteria.</p>
+                </div>
+
+            </div>
         </div>
 
-        <div class="card info-card">
-            <h3>Justification Of Research Question:</h3>
-            <p>Overview of the research parameters and project criteria.</p>
-        </div>
+       <script>
+    
+    function setRandomAvatar() {
+        const avatarImages = [
+            'Img1.jpeg',
+            'Img2.jpeg',
+            'Img3.jpeg',
+            'Img4.jpeg'
+        ];
 
-        <div class="card info-card">
-            <h3>Primary Data That Will Be Used To Answer The Research Question</h3>
-            <p>Overview of the research parameters and project criteria.</p>
-        </div>
+        const avatarImg = document.getElementById('random-avatar');
 
-        <div class="card info-card">
-            <h3>Secondary Data That Will Be Used To Answer The Research Question</h3>
-            <p>Overview of the research parameters and project criteria.</p>
-        </div>
-
-        <div class="card info-card">
-            <h3>Action Plan</h3>
-            <p>Overview of the research parameters and project criteria.</p>
-        </div>
-
-        <div class="card info-card">
-            <h3>Bibliography</h3>
-            <p>Overview of the research parameters and project criteria.</p>
-        </div>
-
-    </div>
-</div>
-
-    <script>
-        function switchTab(evt, tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.style.display = 'none');
-
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabId).style.display = 'block';
-            evt.currentTarget.classList.add('active');
+        if (avatarImg && avatarImages.length > 0) {
+            const randomIndex = Math.floor(Math.random() * avatarImages.length);
+            avatarImg.src = avatarImages[randomIndex];
         }
+    }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const avatarImages = [
-                'Img1.jpeg',
-                'Img2.jpeg',
-                'Img3.jpeg'
-            ];
+    
+    function switchTab(evt, tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.style.display = 'none');
 
-            const avatarImg = document.getElementById('random-avatar');
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
 
-            if (avatarImg && avatarImages.length > 0) {
-                const randomIndex = Math.floor(Math.random() * avatarImages.length);
-                avatarImg.src = avatarImages[randomIndex];
-            }
-        });
-    </script>
+        document.getElementById(tabId).style.display = 'block';
+        evt.currentTarget.classList.add('active');
+
+        
+        if (tabId === 'tab-home') {
+            setRandomAvatar();
+        }
+    }
+
+    
+    window.addEventListener('DOMContentLoaded', () => {
+        setRandomAvatar();
+    });
+</script>
 </body>
 
 </html>
