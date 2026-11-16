@@ -16,8 +16,10 @@
         <div class="tab-menu">
             <button class="tab-btn active" onclick="switchTab(event, 'tab-home')">Home</button>
             <button class="tab-btn" onclick="switchTab(event, 'tab-data')">Background Information</button>
-            <button class="tab-btn" onclick="switchTab(event, 'tab-reports')">Reports</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-reports')">Criterion A</button>
             <button class="tab-btn" onclick="switchTab(event, 'tab-about')">Criterion B</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-criterion-c')">Criterion C</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tab-criterion-d')">Criterion D</button>
         </div>
 
         <!-- Main Title Card -->
@@ -253,6 +255,20 @@
                 </div>
 
             </div>
+        </div>
+        <!-- Tab 3: Reports Content (Hidden by default) -->
+        <div id="tab-criterion-c" class="tab-content" style="display: none;">
+            <section class="card content-card">
+                <h3>Reports</h3>
+                <p>Detailed analysis reports and documentation on global societal metrics.</p>
+            </section>
+        </div>
+        <!-- Tab 3: Reports Content (Hidden by default) -->
+        <div id="tab-criterion-d" class="tab-content" style="display: none;">
+            <section class="card content-card">
+                <h3>Reports</h3>
+                <p>Detailed analysis reports and documentation on global societal metrics.</p>
+            </section>
         </div>
 
         <script>
