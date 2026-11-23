@@ -206,3 +206,38 @@ strong {
     font-weight: bolder;
     font-size: large;
 }
+
+/* Isolated MLA 9 Works Cited Container */
+.mla-works-cited {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  line-height: 2; /* Strict MLA double-spacing */
+  text-align: left;
+  max-width: 8.5in; /* Standard page width */
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.mla-works-cited h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  font-weight: normal; /* MLA 9 titles are not bolded */
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.mla-works-cited p {
+  margin: 0;
+  padding-left: 0.5in; /* 0.5-inch hanging indent */
+  text-indent: -0.5in;
+  overflow-wrap: break-word; /* Prevents long URLs from breaking layout on mobile */
+  word-wrap: break-word;
+}
+
+.mla-works-cited a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+
